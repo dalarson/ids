@@ -1,0 +1,7 @@
+Package: cs4404m3t9
+Version: 1.0-1
+Priority: optional
+Architecture: all
+Pre-Depends: ansible, git, aptitude, docker.io
+Maintainer: t9
+Description: CS4404 Mission 3 Team 9 Debian Package

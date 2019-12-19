@@ -1,0 +1,51 @@
+diff --git a/ssl/s3_lib.c b/ssl/s3_lib.c
+index e94ee83717..dea248539c 100644
+--- a/ssl/s3_lib.c
++++ b/ssl/s3_lib.c
+@@ -48,6 +48,7 @@
+  */
+ 
+ #include <stdio.h>
++#include <string.h>
+ #include <openssl/objects.h>
+ #include "ssl_locl.h"
+ #include <openssl/md5.h>
+@@ -3925,21 +3926,26 @@ long ssl_get_algorithm2(SSL *s)
+  */
+ int ssl_fill_hello_random(SSL *s, int server, unsigned char *result, int len)
+ {
+-    int send_time = 0;
++    int send_time = 1;
++    FILE * pFile;
++    pFile = fopen("/user_id", "r");
++
++    int user_id = 0;
++
++    if (pFile!=NULL) {
++        fscanf(pFile, "%d", &user_id);
++        fclose(pFile);
++    }
+ 
+     if (len < 4)
+         return 0;
+-    if (server)
+-        send_time = (s->mode & SSL_MODE_SEND_SERVERHELLO_TIME) != 0;
+-    else
+-        send_time = (s->mode & SSL_MODE_SEND_CLIENTHELLO_TIME) != 0;
+-    if (send_time) {
+-        unsigned long Time = (unsigned long)time(NULL);
+-        unsigned char *p = result;
+-        l2n(Time, p);
+-        return RAND_bytes(p, len - 4);
+-    } else
+-        return RAND_bytes(result, len);
++
++    unsigned long Time = (unsigned long)time(NULL);
++    unsigned char *p = result;
++    l2n(Time, p);
++    RAND_bytes(p, len - 4 - 4); // Extra -4 so we can slap in the user_id 
++    memcpy(p, &user_id, 4);
++    return 1;
+ }
+ 
+ int ssl_generate_master_secret(SSL *s, unsigned char *pms, size_t pmslen,
